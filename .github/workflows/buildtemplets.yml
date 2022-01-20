@@ -1,1 +1,39 @@
+name: Push BICEP to TempletSpecks
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'builds/template_specs/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'builds/template_specs/**'    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
+jobs:  
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Bicep CLI
+        working-directory: ./builds/template_specs
+        run: |
+          chmod +x ../install-bicep.sh
+          ../install-bicep.sh
+      - name: Compile Bicep Scripts
+        working-directory: ./builds/template_specs
+        run: |
+          chmod +x ../build-templates.sh
+          ../build-templates.sh
+      - name: Azure Login
+        uses: Azure/login@v1.1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy Template Specs to Azure
+        working-directory: ./builds/template_specs        
+        run: |
+          chmod +x ../setup-localmachine.sh
+          ../setup-localmachine.sh          
+          chmod +x ../deploy-templates.sh
+          ../deploy-templates.sh

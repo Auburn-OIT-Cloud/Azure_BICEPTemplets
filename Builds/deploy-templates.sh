@@ -19,7 +19,7 @@ RESPONSE=$(az ts create \
     --version $VERSION \
     --resource-group $RESOURCE_GROUP \
     --location $LOCATION \
-    --template-file "./django-app/component.json" \
+    --template-file "./bicep_mainbuild_wvd_template_spec.bicep" \
     --yes\
     --query 'id' -o json)
     
