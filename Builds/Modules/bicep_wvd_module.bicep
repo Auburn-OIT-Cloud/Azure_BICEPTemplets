@@ -1,4 +1,7 @@
-param location string
+@allowed([
+  'eastus'
+])
+param location string = 'eastus'
 
 param hostpoolname string
 param hostpooltype string = 'pooled'

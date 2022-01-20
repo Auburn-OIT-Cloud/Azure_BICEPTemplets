@@ -12,7 +12,7 @@ New-AzTemplateSpec `
 -Version '1.0' `
 -TemplateFile .\bicep_mainbuild_wvd_template_spec.bicep
 
-
+This should run automatically when this is pushed to Github
 */
 
 targetScope='subscription'
@@ -63,6 +63,5 @@ module wvdfrommod '../Modules/bicep_wvd_module.bicep' = {
     hostpoolname: hostpoolname
     workspacefriendlyname: workspacefriendlyname
     workspaceName: workspacename
-    location: newRG.location
   }
 }
