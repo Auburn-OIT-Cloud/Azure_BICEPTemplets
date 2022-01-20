@@ -3,11 +3,11 @@ on:
   push:
     branches: [ main ]
     paths:
-    - 'builds/template_specs/**'
+    - 'Builds/Template_Specs/**'
   pull_request:
     branches: [ main ]
     paths:
-    - 'builds/template_specs/**'    
+    - 'Builds/Template_Specs/**'    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -17,12 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Bicep CLI
-        working-directory: ./builds/template_specs
+        working-directory: ./Builds/Template_Specs
         run: |
           chmod +x ../install-bicep.sh
           ../install-bicep.sh
       - name: Compile Bicep Scripts
-        working-directory: ./builds/template_specs
+        working-directory: ./Builds/Template_Specs/
         run: |
           chmod +x ../build-templates.sh
           ../build-templates.sh
@@ -31,7 +31,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Deploy Template Specs to Azure
-        working-directory: ./builds/template_specs        
+        working-directory: ./Builds/Template_Specs/        
         run: |
           chmod +x ../setup-localmachine.sh
           ../setup-localmachine.sh          
