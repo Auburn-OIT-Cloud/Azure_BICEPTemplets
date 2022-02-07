@@ -63,7 +63,7 @@ Start-Process -FilePath "msiexec.exe" -ArgumentList "/i $WVDAgentInstaller", "/q
 Start-sleep 30
 
 #Install the WVD Bootloader
-Log "Install the Boot Loader"
+Get-Log "Install the Boot Loader"
 Start-Process -FilePath "msiexec.exe" -ArgumentList "/i $WVDBootLoaderInstaller", "/quiet", "/qn", "/norestart", "/passive", "/l* C:\Users\AgentBootLoaderInstall.txt" | Wait-process
 
-Log "Finished"
+Get-Log "Finished"
