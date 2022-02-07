@@ -43,7 +43,7 @@ function log
 }
 
 #Download all source file async and wait for completion
-log  "Download WVD Agent & bootloader"
+Get-Log  "Download WVD Agent & bootloader"
 $files = @(
     @{url = "https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrmXv"; path = $WVDAgentInstaller}
     @{url = "https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RWrxrH"; path = $WVDBootLoaderInstaller}
@@ -56,7 +56,7 @@ $workers = foreach ($f in $files)
 $workers.Result
 
 #Install the WVD Agent
-Log "Install the WVD Agent"
+Get-Log "Install the WVD Agent"
 Start-Process -FilePath "msiexec.exe" -ArgumentList "/i $WVDAgentInstaller", "/quiet", "/qn", "/norestart", "/passive", "REGISTRATIONTOKEN=$registrationKey", "/l* C:\Users\AgentInstall.txt" | Wait-process
 
 #Wait to ensure WVD Agent has enough time to finish
