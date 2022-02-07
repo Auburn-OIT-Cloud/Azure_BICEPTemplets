@@ -205,7 +205,7 @@ param diskStorType string
 param numberofvms int
 param seqstartnumber int = 1
 var configurationScriptWVD = 'Add-WVDHostToHostpoolSpringV2.ps1'
-param assetLocation string = 'https://raw.githubusercontent.com/fberson/wvd/master/'
+param assetLocation string = 'https://github.com/Auburn-OIT-Cloud/Azure_BICEPTemplets/blob/8ea0a8a414a60401f36ab9537f6f624a4279c1d2/Builds/PowerShell_Scripts/'
 @secure()
 param registrationKey string
 
